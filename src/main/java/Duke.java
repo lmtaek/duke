@@ -1,4 +1,5 @@
 import javafx.application.Application;
+import javafx.scene.control.Label;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.ScrollPane;
@@ -27,7 +28,7 @@ public class Duke extends Application {
 
     @Override
     public void start(Stage stage) {
-        //Step 1: setting up the window's formatting.
+        //Step 1 - Creating a window for Duke -
         scrollPane = new ScrollPane();
         dialogContainer = new VBox();
         scrollPane.setContent(dialogContainer);
@@ -43,7 +44,7 @@ public class Duke extends Application {
         stage.setScene(scene);
         stage.show();
 
-        //Step 2
+        //Step 2 - Reformatting window for Duke's GUI -
         stage.setTitle("Duke");
         stage.setResizable(false);
         stage.setMinHeight(600.0);
@@ -72,5 +73,25 @@ public class Duke extends Application {
         AnchorPane.setLeftAnchor(userInput, 1.0);
         AnchorPane.setBottomAnchor(userInput, 1.0);
 
+        //Step 3 - Adding functionality to handle user input. -
+        sendButton.setOnMouseClicked((event) -> {
+            dialogContainer.getChildren().add(getDialogLabel(userInput.getText()));
+            userInput.clear();
+        });
+
+        userInput.setOnAction((event) -> {
+            dialogContainer.getChildren().add(getDialogLabel(userInput.getText()));
+            userInput.clear();
+        });
+
+        dialogContainer.heightProperty().addListener((observable) -> scrollPane.setVvalue(1.0));
+
+    }
+
+    private Label getDialogLabel(String text) {
+        Label textToAdd = new Label(text);
+        textToAdd.setWrapText(true);
+
+        return textToAdd;
     }
 }
