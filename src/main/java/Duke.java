@@ -3,6 +3,9 @@ import java.util.Scanner;
 public class Duke {
 
     private static String dukeGreeting = "Hello, I'm Duke.\nWhat can I do to help you?";
+    private static String[] taskList = new String[100];
+    private static int listLength = 0;
+
 
     public static void main(String[] args) {
         String logo = " ____        _        \n"
@@ -23,8 +26,11 @@ public class Duke {
             if (userInput.toLowerCase().equals("bye")) {
                 closeApplication();
             }
-
-            System.out.println("\t" + userInput);
+            else if (userInput.toLowerCase().equals("list")) {
+                System.out.println(readTaskList());
+            } else {
+                System.out.println(addToList(userInput));
+            }
             continue;
         }
 
@@ -34,5 +40,25 @@ public class Duke {
         System.out.println("\tBye. Hope to see you again soon!");
         System.exit(0);
     }
+
+    static String readTaskList() {
+        String response = "";
+        for (int i=0; i<listLength; i++) {
+            response = response + "\t" + (i+1) + ". " + taskList[i] + "\n";
+        }
+        return response;
+    }
+
+    static String addToList(String input) {
+        if (listLength >= 100) {
+            return "\tYou can't add any more tasks to your list!";
+        }
+        else {
+            taskList[listLength] = input;
+            listLength++;
+            return "\tadded: " + input;
+        }
+    }
+
 
 }
