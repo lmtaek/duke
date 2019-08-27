@@ -29,7 +29,7 @@ public class Duke {
             else if (userInput.toLowerCase().equals("list")) {
                 System.out.println(readTaskList());
             } else if (userInput.toLowerCase().contains("done ")){
-                System.out.println(parseMarkCompleteRequest(userInput));
+                System.out.println(markCompletedRequest(userInput));
             }
             else {
                 System.out.println(addToList(userInput));
@@ -74,7 +74,7 @@ public class Duke {
         else { return "[✗] "; }
     }
 
-    public static String parseMarkCompleteRequest(String input) {
+    public static String markCompletedRequest(String input) {
         String couldNotFindTask = "\n\tI couldn't find the task.";
         String parsedInput[] = input.split(" ");
         if ((parsedInput.length <= 1)) {
