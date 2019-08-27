@@ -97,13 +97,9 @@ public class Duke extends Application {
     }
 
     private void handleUserInput() {
-        //Label userText = new Label(userInput.getText());
-        //Label dukeText = new Label(getResponse(userInput.getText()));
         String userText = userInput.getText();
         String dukeText = userInput.getText();
         dialogContainer.getChildren().addAll(
-                //DialogBox.getUserDialog(userText, new ImageView(user)),
-                //DialogBox.getDukeDialog(dukeText, new ImageView(duke))
                 DialogBox.getUserDialog(userText, user),
                 DialogBox.getDukeDialog(dukeText, duke)
         );
@@ -111,6 +107,10 @@ public class Duke extends Application {
     }
 
     String getResponse(String input) {
-        return "Duke heard: " + input;
-    } //shouldn't be package-private, but need guidance.
+        if (input.toLowerCase().equals("bye")) {
+            return "Bye. Hope to see you again soon!";
+        } else {
+            return input;
+        }
+    }
 }
