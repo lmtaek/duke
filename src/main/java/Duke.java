@@ -20,6 +20,9 @@ public class Duke extends Application {
     private Image user = new Image(this.getClass().getResourceAsStream("/images/DaUser.png"));
     private Image duke = new Image(this.getClass().getResourceAsStream("/images/DaDuke.png"));
 
+    private String[] textList = new String[100];
+    private int listLength = 0;
+
     public static void main(String[] args) {
         String logo = " ____        _        \n"
                 + "|  _ \\ _   _| | _____ \n"
@@ -108,9 +111,32 @@ public class Duke extends Application {
 
     String getResponse(String input) {
         if (input.toLowerCase().equals("bye")) {
-            return "Bye. Hope to see you again soon!";
+            return sayGoodbye();
+        } else if (input.toLowerCase().equals("list")){
+            return readList();
         } else {
-            return input;
+            return addToList(input);
         }
+    }
+
+    String sayGoodbye() {
+        return "Bye. Hope to see you again soon!";
+    }
+
+    String addToList(String input) {
+        textList[listLength] = input;
+        listLength++;
+        return "added: " + input;
+    }
+
+    String readList() {
+        String response = "";
+        if (listLength >= 100) {
+            return "You can't add any more items to the list!";
+        }
+        for (int i=0; i<listLength; i++) {
+            response = response + (i+1) + ". " + textList[i] + "\n";
+        }
+        return response;
     }
 }
