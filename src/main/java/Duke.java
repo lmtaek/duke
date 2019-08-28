@@ -72,16 +72,16 @@ public class Duke {
         for (int i = 0; i < listLength; i++) {
             textToWrite = textToWrite
             + taskList[i].taskType
-            + " "
+            + "|"
             + taskList[i].isTaskDone()
-            + " "
+            + "|"
             + taskList[i].getTaskName();
 
             if (taskList[i].taskType.equals(Task.TaskType.DEADLINE)
             || taskList[i].taskType.equals(Task.TaskType.EVENT)) {
                 textToWrite = textToWrite
-                        + " "
-                        + taskList[i].getTime()
+                        + "|"
+                        + taskList[i].getBasicTime()
                         + "\n";
             } else {
                 textToWrite = textToWrite + "\n";

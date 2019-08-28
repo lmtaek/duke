@@ -24,6 +24,10 @@ public abstract class Task {
         return time;
     }
 
+    public String getBasicTime() { //Needed a function that wasn't overridden by subclasses.
+        return time;
+    }
+
     public Boolean isTaskDone() {
         return isDone;
     }
