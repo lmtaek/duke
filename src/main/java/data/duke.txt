@@ -1,5 +1,11 @@
 TODO//true//wake up
-DEADLINE//true//feed dogs//7am
-EVENT//false//eat breakfast with family//10am
-DEADLINE//false//homework//three-thirtypm
-EVENT//true//nap//5pm
+DEADLINE//true//fundraiser for school//14/2/2002 1200
+DEADLINE//true//Feed Dogs//7am
+EVENT//false//Eat breakfast with family//this morning
+EVENT//false//nap//5pm
+EVENT//true//Go for a run//20/09/2008 0130
+DEADLINE//false//meet friend for coffee//29/8/2019 0915
+EVENT//true//Mystery event!//28/11/0002 0234
+EVENT//true//birthday get-together at sister's//20/8/2019 1900
+TODO//false//More Homework
+EVENT//true//movie marathon//30/9/1998 0125

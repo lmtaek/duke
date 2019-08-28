@@ -11,4 +11,11 @@ public class Deadline extends Task {
         return " (by: " + super.getTime() + ")";
     }
 
+    @Override
+    public String getFullDate() {
+        if (!super.getFullDate().equals("") || !(super.getFullDate() == null)) {
+            return " (by: " + super.getFullDate() + ")";
+        }
+        return "";
+    }
 }

@@ -11,8 +11,10 @@ public abstract class Task {
     private String taskName;
     private Boolean isDone = false;
     private String time;
-    private String datePattern = "d/MMM/yyyy";
+    private String dateInputPattern = "d/M/yyyy HHmm";
+    private String dateOutputPattern = "MMMM d, yyyy h:mma";
     private LocalDateTime date;
+    private Boolean hasDate = false;
 
     public TaskType taskType;
 
@@ -36,33 +38,29 @@ public abstract class Task {
         return time;
     }
 
-    /*
-    public Boolean isTimeStringValid(String timeString) {
-        SimpleDateFormat dateFormat = new SimpleDateFormat(datePattern);
-        dateFormat.setLenient(false);
-        try {
-            dateFormat.parse(timeString);
-        } catch (ParseException e) {
-            System.out.println("Didn't work, chief.");
-            System.out.println(timeString);
-            return false;
-        }
-        return true;
+    public Boolean getHasDate() {
+        return hasDate;
     }
-     */
 
     public void convertTimeToDate() {
         try {
-            DateTimeFormatter formatter = DateTimeFormatter.ofPattern(datePattern);
+            DateTimeFormatter formatter = DateTimeFormatter.ofPattern(dateInputPattern);
             LocalDateTime reformattedDate = LocalDateTime.parse(this.time, formatter);
-
-            System.out.println(reformattedDate);
-
             this.date = reformattedDate;
+            this.hasDate = true;
         } catch (DateTimeParseException e) {
-            System.out.println("Time can't be converted to date.");
+            //System.out.println("Time formatting does not align with Date formatting.");
         }
 
+    }
+
+    public String getFullDate() {
+        if (this.date == null) {
+            return "";
+        }
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern(dateOutputPattern);
+        String fullDate = this.date.format(formatter);
+        return fullDate;
     }
 
     public LocalDateTime getDate() {

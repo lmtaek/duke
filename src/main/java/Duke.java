@@ -150,7 +150,7 @@ public class Duke {
                     + taskTypeLabel(taskList[i])
                     + taskCompletionStatus(taskList[i].isTaskDone())
                     + taskList[i].getTaskName()
-                    + taskList[i].getTime()
+                    + getTimeOrDate(taskList[i])
                     + "\n";
         }
         return response;
@@ -169,6 +169,14 @@ public class Duke {
             taskLabel = "";
         }
         return taskLabel;
+    }
+
+    static String getTimeOrDate(Task task) {
+        if (task.getHasDate()) {
+            return task.getFullDate();
+        } else {
+            return task.getTime();
+        }
     }
 
     static String addTodo(String userInput) {
@@ -254,7 +262,7 @@ public class Duke {
                     + taskTypeLabel(task)
                     + taskCompletionStatus(task.isTaskDone())
                     + task.getTaskName()
-                    + task.getTime()
+                    + getTimeOrDate(task)
                     + "\n\t Now you have " + listLength + " task(s) in the list.";
             return output;
         }
@@ -303,6 +311,6 @@ public class Duke {
                 + taskTypeLabel(task)
                 + taskCompletionStatus(task.isTaskDone())
                 + task.getTaskName()
-                + task.getTime();
+                + getTimeOrDate(task);
     }
 }
