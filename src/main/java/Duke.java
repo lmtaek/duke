@@ -240,6 +240,11 @@ public class Duke {
 
     static String markTaskAsDone(Task task) {
         task.markAsDone();
+        try {
+            writeInFile(formatFileText());
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
         return "\tNice! I've marked this task as done:\n"
                 + "\t\t"
                 + taskTypeLabel(task)
