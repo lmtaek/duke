@@ -1,6 +1,5 @@
-TODO//false//help
-DEADLINE//true//CATS//noon thirty
-EVENT//false//party purple//2pm
-TODO//true//DOGS
-TODO//false//memes
-DEADLINE//true//die//7
+TODO//true//wake up
+DEADLINE//true//feed dogs//7am
+EVENT//false//eat breakfast with family//10am
+DEADLINE//false//homework//three-thirtypm
+EVENT//true//nap//5pm
