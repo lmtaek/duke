@@ -1,13 +1,11 @@
 public class Event extends Task {
 
-    private String startTime;
-    private String endTime;
+    private String time;
 
-    public Event(String taskName) {
+    public Event(String taskName, String eventTime) {
         super(taskName);
+        this.time = eventTime;
+        this.taskType = TaskType.EVENT;
     }
 
-    public String getTimeSpan() {
-        return "at: " + startTime + "-" + endTime;
-    }
 }
