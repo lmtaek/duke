@@ -5,4 +5,9 @@ public class ToDo extends Task {
         this.taskType = TaskType.TODO;
     }
 
+    @Override
+    public String getTime() {
+        return "";
+    }
+
 }

@@ -7,4 +7,8 @@ public class Event extends Task {
         this.taskType = TaskType.EVENT;
     }
 
+    @Override
+    public String getTime() {
+        return " (at: " + super.getTime() + ")";
+    }
 }
