@@ -47,27 +47,15 @@ public class Duke {
     }
 
     static String readTaskList() {
-        String response = "\tHere are the tasks in your list:\n";
+        String response = "\tHere are the tasks in your list:\n\n";
 
         for (int i=0; i<listLength; i++) {
-
-            String taskLabel;
-            if (taskList[i].taskType.equals(Task.TaskType.TODO)) {
-                taskLabel = "[T] ";
-            } else if (taskList[i].taskType.equals(Task.TaskType.DEADLINE)) {
-                taskLabel = "[D] ";
-            } else if (taskList[i].taskType.equals(Task.TaskType.EVENT)) {
-                taskLabel = "[E] ";
-            }
-            else {
-                taskLabel = "";
-            }
 
             response = response
                     + "\t"
                     + (i+1)
                     + ". "
-                    + taskLabel
+                    + taskTypeLabel(taskList[i])
                     + taskCompletionStatus(taskList[i].isTaskDone())
                     + taskList[i].getTaskName()
                     + isThereATime(taskList[i])
@@ -76,34 +64,50 @@ public class Duke {
         return response;
     }
 
+    static String taskTypeLabel(Task task) {
+        String taskLabel;
+        if (task.taskType.equals(Task.TaskType.TODO)) {
+            taskLabel = "[T] ";
+        } else if (task.taskType.equals(Task.TaskType.DEADLINE)) {
+            taskLabel = "[D] ";
+        } else if (task.taskType.equals(Task.TaskType.EVENT)) {
+            taskLabel = "[E] ";
+        }
+        else {
+            taskLabel = "";
+        }
+        return taskLabel;
+    }
+
     static String isThereATime(Task task) {
         String output = "";
 
         if (task.taskType.equals(Task.TaskType.DEADLINE)) {
-            output = "(by " + task.getTime() + ")";
+            output = " (by: " + task.getTime() + ")";
         } else if (task.taskType.equals(Task.TaskType.EVENT)) {
-            output = "(at " + task.getTime() + ")";
+            output = " (at: " + task.getTime() + ")";
         }
 
         return output;
     }
 
     static String addTodo(String userInput) {
+        userInput.trim();
         String taskName = userInput.replaceFirst("todo ", "");
         if (taskName.equals("")) {
-            return "You need to specify what the task is!";
+            return "\tYou need to specify what the task is!";
         }
         ToDo newTask = new ToDo(taskName);
-        System.out.println(newTask + newTask.taskType.toString());
         return addToList(newTask);
     }
 
     static String addDeadline(String userInput) {
+        userInput.trim();
         String task = userInput.replaceFirst("deadline ", "");
-        String[] taskComponents = task.split(" /");
+        String[] taskComponents = task.split(" /by ");
 
         if (taskComponents.length <= 1) {
-            return "Please add a time for your deadline.";
+            return "\tPlease provide more details for your deadline.";
         }
 
         String taskName = taskComponents[0];
@@ -114,11 +118,12 @@ public class Duke {
     }
 
     static String addEvent(String userInput) {
+        userInput.trim();
         String task = userInput.replaceFirst("event ", "");
-        String[] taskComponents = task.split(" /");
+        String[] taskComponents = task.split(" /at ");
 
         if (taskComponents.length <= 1) {
-            return "Please add a time for your event.";
+            return "\tPlease provide more details for your event.";
         }
 
         String taskName = taskComponents[0];
@@ -136,7 +141,7 @@ public class Duke {
             taskList[listLength] = task;
             listLength++;
 
-            String output = "\tGot it. I've added this task: "
+            String output = "\n\tGot it. I've added this task: "
                     + "\n\t\t";
 
             if (task.taskType.equals(Task.TaskType.TODO)) {
@@ -150,7 +155,7 @@ public class Duke {
                         + "[D] "
                         + taskCompletionStatus(task.isTaskDone())
                         + task.getTaskName()
-                        + " (by"
+                        + " (by: "
                         + task.getTime()
                         + ")";
             } else if (task.taskType.equals(Task.TaskType.EVENT)) {
@@ -158,14 +163,14 @@ public class Duke {
                         + "[T] "
                         + taskCompletionStatus(task.isTaskDone())
                         + task.getTaskName()
-                        + " (at"
+                        + " (at: "
                         + task.getTime()
                         + ")";
             } else {
                 return "I couldn't add your item to the list. Sorry!";
             }
 
-            output = output + "\n\t Now you have " + listLength + " tasks in the list.";
+            output = output + "\n\t Now you have " + listLength + " task(s) in the list.";
             return output;
 
         }
@@ -200,6 +205,7 @@ public class Duke {
         task.markAsDone();
         return "\n\tNice! I've marked this task as done:\n"
                 + "\t\t"
+                + taskTypeLabel(task)
                 + taskCompletionStatus(task.isTaskDone())
                 + task.getTaskName()
                 + "\n";

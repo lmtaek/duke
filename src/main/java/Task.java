@@ -10,17 +10,15 @@ public abstract class Task {
 
     public TaskType taskType;
 
-    public Task(String taskName) {
+    public Task(String taskName, String taskTime) {
         this.taskName = taskName;
+        this.time = taskTime;
     }
 
     public String getTaskName() {
         return taskName;
     }
 
-//    public Enum getTaskType() {
-//        return taskType;
-//    }
 
     public String getTime() {
         return time;
