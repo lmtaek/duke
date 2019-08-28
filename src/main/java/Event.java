@@ -5,6 +5,7 @@ public class Event extends Task {
     public Event(String taskName, String eventTime) {
         super(taskName, eventTime);
         this.taskType = TaskType.EVENT;
+        convertTimeToDate();
     }
 
     @Override
