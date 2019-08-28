@@ -1,3 +1,5 @@
+import java.io.BufferedReader;
+import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.util.Scanner;
@@ -11,6 +13,14 @@ public class Duke {
 
 
     public static void main(String[] args) throws DukeException {
+
+        //When Duke starts up, it will check to see if a list has already been made.
+        try {
+            readFile();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
         String logo = " ____        _        \n"
                 + "|  _ \\ _   _| | _____ \n"
                 + "| | | | | | | |/ / _ \\\n"
@@ -63,8 +73,46 @@ public class Duke {
         return true;
     }
 
-    static Boolean readFile() {
-        return false;
+    static Boolean readFile() throws IOException {
+        try {
+            BufferedReader taskFile = new BufferedReader(new FileReader("./data/duke.txt"));
+            String currentLine = taskFile.readLine();
+            if (currentLine != null) {
+                int i = 0;
+                while (currentLine != null) {
+                    String[] parsedCurrentLine = currentLine.split("//");
+                    if (parsedCurrentLine.length < 3) {
+                        return false;
+                    }
+                    if (parsedCurrentLine[0].equals(Task.TaskType.TODO.toString())) {
+                        ToDo readTask = new ToDo(parsedCurrentLine[2]);
+                        if (parsedCurrentLine[1].equals("true")) {
+                            readTask.markAsDone();
+                        }
+                        addToList(readTask, i);
+                    } else if (parsedCurrentLine[0].equals(Task.TaskType.DEADLINE.toString())) {
+                        Deadline readTask = new Deadline(parsedCurrentLine[2], parsedCurrentLine[3]);
+                        if (parsedCurrentLine[1].equals("true")) {
+                            readTask.markAsDone();
+                        }
+                        addToList(readTask, i);
+                    } else if (parsedCurrentLine[0].equals(Task.TaskType.EVENT.toString())) {
+                        Event readTask = new Event(parsedCurrentLine[2], parsedCurrentLine[3]);
+                        if (parsedCurrentLine[1].equals("true")) {
+                            readTask.markAsDone();
+                        }
+                        addToList(readTask, i);
+                    }
+                    currentLine = taskFile.readLine();
+                    i++;
+                }
+            }
+            taskFile.close();
+        } catch (Exception e) {
+            System.out.println(e);
+            return false;
+        }
+        return true;
     }
 
     static String formatFileText() {
@@ -72,15 +120,15 @@ public class Duke {
         for (int i = 0; i < listLength; i++) {
             textToWrite = textToWrite
             + taskList[i].taskType
-            + "|"
+            + "//"
             + taskList[i].isTaskDone()
-            + "|"
+            + "//"
             + taskList[i].getTaskName();
 
             if (taskList[i].taskType.equals(Task.TaskType.DEADLINE)
             || taskList[i].taskType.equals(Task.TaskType.EVENT)) {
                 textToWrite = textToWrite
-                        + "|"
+                        + "//"
                         + taskList[i].getBasicTime()
                         + "\n";
             } else {
@@ -210,6 +258,11 @@ public class Duke {
                     + "\n\t Now you have " + listLength + " task(s) in the list.";
             return output;
         }
+    }
+
+    static void addToList(Task task, int arrayIndex) {
+        taskList[arrayIndex] = task;
+        listLength++;
     }
 
     static String taskCompletionStatus(Boolean isDone) {

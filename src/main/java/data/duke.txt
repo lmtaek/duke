@@ -1,3 +1,6 @@
-TODO|false|CATSSSS
-DEADLINE|true|purple|7pm
-EVENT|true|FRANKINCENSE|some time idk
+TODO//false//help
+DEADLINE//true//CATS//noon thirty
+EVENT//false//party purple//2pm
+TODO//true//DOGS
+TODO//false//memes
+DEADLINE//true//die//7
