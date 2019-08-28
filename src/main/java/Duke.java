@@ -1,3 +1,5 @@
+import java.io.FileWriter;
+import java.io.IOException;
 import java.util.Scanner;
 
 public class Duke {
@@ -47,6 +49,45 @@ public class Duke {
     static void closeApplication() {
         System.out.println("\tBye. Hope to see you again soon!\n");
         System.exit(0);
+    }
+
+    static Boolean writeInFile(String savedText) throws IOException {
+        try {
+            FileWriter taskFile = new FileWriter("./data/duke.txt");
+            taskFile.write(savedText);
+            taskFile.close();
+        } catch (Exception e) {
+            System.out.println(e);
+            return false;
+        }
+        return true;
+    }
+
+    static Boolean readFile() {
+        return false;
+    }
+
+    static String formatFileText() {
+        String textToWrite = "";
+        for (int i = 0; i < listLength; i++) {
+            textToWrite = textToWrite
+            + taskList[i].taskType
+            + " "
+            + taskList[i].isTaskDone()
+            + " "
+            + taskList[i].getTaskName();
+
+            if (taskList[i].taskType.equals(Task.TaskType.DEADLINE)
+            || taskList[i].taskType.equals(Task.TaskType.EVENT)) {
+                textToWrite = textToWrite
+                        + " "
+                        + taskList[i].getTime()
+                        + "\n";
+            } else {
+                textToWrite = textToWrite + "\n";
+            }
+        }
+        return textToWrite;
     }
 
     static String readTaskList() {
@@ -154,6 +195,11 @@ public class Duke {
         else {
             taskList[listLength] = task;
             listLength++;
+            try {
+                writeInFile(formatFileText());
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
 
             String output = "\tGot it. I've added this task: "
                     + "\n\t\t"
@@ -163,7 +209,6 @@ public class Duke {
                     + task.getTime()
                     + "\n\t Now you have " + listLength + " task(s) in the list.";
             return output;
-
         }
     }
 
