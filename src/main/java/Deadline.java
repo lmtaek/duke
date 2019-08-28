@@ -13,7 +13,7 @@ public class Deadline extends Task {
 
     @Override
     public String getFullDate() {
-        if (!super.getFullDate().equals("") || !(super.getFullDate() == null)) {
+        if (this.getHasDate()) {
             return " (by: " + super.getFullDate() + ")";
         }
         return "";

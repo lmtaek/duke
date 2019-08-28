@@ -15,7 +15,7 @@ public class Event extends Task {
 
     @Override
     public String getFullDate() {
-        if (!super.getFullDate().equals("") || !(super.getFullDate() == null)) {
+        if (this.getHasDate()) {
             return " (at: " + super.getFullDate() + ")";
         }
         return "";

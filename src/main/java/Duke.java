@@ -288,7 +288,8 @@ public class Duke {
             try {
                 Integer index = Integer.parseInt(parsedInput[1]);
                 if (index <= 0
-                        || index == null) {
+                        || index == null
+                        || index > listLength) {
                     return couldNotFindTask;
                 }
                     index--;
