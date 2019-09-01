@@ -2,6 +2,7 @@ import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.Scanner;
 
 public class Duke {
@@ -9,7 +10,9 @@ public class Duke {
     private static String dukeGreeting = "Hello, I'm Duke.\nWhat can I do to help you?";
     private static String dukeNeedsValidInput = "\tI'm not sure that I understand. Sorry.";
     private static Task[] taskList = new Task[100];
-    private static int listLength = 0;
+    //private HashMap<Integer, Task> taskMap = new HashMap<Integer, Task>(); //need inverse Map <Task, Index> for fast 'search'
+    private static ArrayList<Task> taskArrayList = new ArrayList<Task>();
+    private static int numberOfTasks = 0;
 
 
     public static void main(String[] args) throws DukeException {
@@ -48,7 +51,10 @@ public class Duke {
                 System.out.println(addDeadline(userInput));
             } else if (userInput.toLowerCase().contains("event")) {
                 System.out.println(addEvent(userInput));
-            } else {
+            } else if (userInput.toLowerCase().contains("delete")) {
+                System.out.println(deleteTask(userInput));
+            }
+            else {
                 System.out.println(dukeNeedsValidInput);
             }
             continue;
@@ -117,19 +123,19 @@ public class Duke {
 
     static String formatFileText() {
         String textToWrite = "";
-        for (int i = 0; i < listLength; i++) {
+        for (int i = 0; i < numberOfTasks; i++) {
             textToWrite = textToWrite
-            + taskList[i].taskType
+            + taskArrayList.get(i).taskType
             + "//"
-            + taskList[i].isTaskDone()
+            + taskArrayList.get(i).isTaskDone()
             + "//"
-            + taskList[i].getTaskName();
+            + taskArrayList.get(i).getTaskName();
 
-            if (taskList[i].taskType.equals(Task.TaskType.DEADLINE)
-            || taskList[i].taskType.equals(Task.TaskType.EVENT)) {
+            if (taskArrayList.get(i).taskType.equals(Task.TaskType.DEADLINE)
+            || taskArrayList.get(i).taskType.equals(Task.TaskType.EVENT)) {
                 textToWrite = textToWrite
                         + "//"
-                        + taskList[i].getBasicTime()
+                        + taskArrayList.get(i).getBasicTime()
                         + "\n";
             } else {
                 textToWrite = textToWrite + "\n";
@@ -138,19 +144,65 @@ public class Duke {
         return textToWrite;
     }
 
+    static String deleteTask(String userInput) {
+        String response = "\tNoted. I've removed this task:\n";
+        int index = -1;
+        String parseProblem = "\tI didn't catch that. Can you reformat your command?";
+        String needMoreDetails = "\tPlease provide more details for your event.";
+        String indexNotFound = "\tI couldn't find your task.";
+
+        userInput.trim();
+        if (!userInput.contains("delete ")) {
+            return parseProblem;
+        }
+        String task = userInput.replaceFirst("delete ", "");
+        if (task.isBlank() || task.isEmpty()) {
+            return needMoreDetails;
+        }
+        try {
+            index = Integer.parseInt(task);
+        } catch (NumberFormatException e) {
+            return needMoreDetails;
+        }
+
+        if (index <= 0) {
+            return indexNotFound;
+        } else {
+            index--;
+            numberOfTasks--;
+            response = response
+                    + "\t\t"
+                    + (index+1)
+                    + ". "
+                    + taskTypeLabel(taskArrayList.get(index))
+                    + taskCompletionStatus(taskArrayList.get(index).isTaskDone())
+                    + taskArrayList.get(index).getTaskName()
+                    + getTimeOrDate(taskArrayList.get(index))
+                    + "\n"
+                    + "\tNow you have " + numberOfTasks + " tasks in the list.";
+        }
+        taskArrayList.remove(index);
+        try {
+            writeInFile(formatFileText());
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        return response;
+    }
+
     static String readTaskList() {
         String response = "\tHere are the tasks in your list:\n";
 
-        for (int i=0; i<listLength; i++) {
+        for (int i = 0; i< numberOfTasks; i++) {
 
             response = response
                     + "\t\t"
                     + (i+1)
                     + ". "
-                    + taskTypeLabel(taskList[i])
-                    + taskCompletionStatus(taskList[i].isTaskDone())
-                    + taskList[i].getTaskName()
-                    + getTimeOrDate(taskList[i])
+                    + taskTypeLabel(taskArrayList.get(i))
+                    + taskCompletionStatus(taskArrayList.get(i).isTaskDone())
+                    + taskArrayList.get(i).getTaskName()
+                    + getTimeOrDate(taskArrayList.get(i))
                     + "\n";
         }
         return response;
@@ -245,12 +297,12 @@ public class Duke {
     }
 
     static String addToList(Task task) {
-        if (listLength >= 100) {
+        if (numberOfTasks >= 100) {
             return "\tYou can't add any more tasks to your list!";
         }
         else {
-            taskList[listLength] = task;
-            listLength++;
+            taskArrayList.add(task);
+            numberOfTasks++;
             try {
                 writeInFile(formatFileText());
             } catch (IOException e) {
@@ -263,14 +315,14 @@ public class Duke {
                     + taskCompletionStatus(task.isTaskDone())
                     + task.getTaskName()
                     + getTimeOrDate(task)
-                    + "\n\t Now you have " + listLength + " task(s) in the list.";
+                    + "\n\t Now you have " + numberOfTasks + " task(s) in the list.";
             return output;
         }
     }
 
     static void addToList(Task task, int arrayIndex) {
-        taskList[arrayIndex] = task;
-        listLength++;
+        taskArrayList.add(task);
+        numberOfTasks++;
     }
 
     static String taskCompletionStatus(Boolean isDone) {
@@ -289,11 +341,11 @@ public class Duke {
                 Integer index = Integer.parseInt(parsedInput[1]);
                 if (index <= 0
                         || index == null
-                        || index > listLength) {
+                        || index > numberOfTasks) {
                     return couldNotFindTask;
                 }
                     index--;
-                    return markTaskAsDone(taskList[index]);
+                    return markTaskAsDone(taskArrayList.get(index));
                 } catch (NumberFormatException | NullPointerException nfe) {
                     return couldNotFindTask;
             }
