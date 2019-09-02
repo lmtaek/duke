@@ -1,10 +1,12 @@
+import Exceptions.DukeException;
+import TaskPackage.*;
+
 import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Scanner;
-//NEED TO IMPORT TASK PACKAGE
 
 public class Duke {
 

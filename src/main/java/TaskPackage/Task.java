@@ -1,10 +1,12 @@
+package TaskPackage;
+
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.time.format.DateTimeParseException;
 
 public abstract class Task {
 
-    enum TaskType {
+    public enum TaskType {
         TODO, DEADLINE, EVENT;
     }
 

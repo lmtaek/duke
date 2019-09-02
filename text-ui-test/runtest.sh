@@ -12,6 +12,8 @@ then
     rm ACTUAL.TXT
 fi
 
+javac ../src/main/java/TaskPackage #need to figure this out
+
 # compile the code into the bin folder, terminates if error occurred
 if ! javac -cp ../src -Xlint:none -d ../bin ../src/main/java/Duke.java
 then
