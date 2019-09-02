@@ -1,0 +1,75 @@
+Hello from
+ ____        _
+|  _ \ _   _| | _____
+| | | | | | | |/ / _ \
+| |_| | |_| |   <  __/
+|____/ \__,_|_|\_\___|
+
+Hello, I'm Duke.
+What can I do to help you?
+
+	Here are the tasks in your list:
+    		1. [T] [✓] wake up
+    		2. [D] [✓] fundraiser for school (by: February 14, 2002 12:00PM)
+    		3. [D] [✓] Feed Dogs (by: 7am)
+    		4. [E] [✗] Eat breakfast with family (at: this morning)
+    		5. [E] [✗] nap (at: 5pm)
+    		6. [E] [✓] Go for a run (at: September 20, 2008 1:30AM)
+    		7. [D] [✗] meet friend for coffee (by: August 29, 2019 9:15AM)
+    		8. [E] [✓] Mystery event! (at: November 28, 0002 2:34AM)
+    		9. [E] [✓] birthday get-together at sister's (at: August 20, 2019 7:00PM)
+    		10. [T] [✗] More Homework
+    		11. [E] [✓] movie marathon (at: September 30, 1998 1:25AM)
+
+    Got it. I've added this task:
+    		[T] [✗] wash car
+    Now you have 12 task(s) in the list.
+    Got it. I've added this task:
+    		[E] [✗] coffee outing (at: October 10, 2010 10:10AM)
+    Now you have 13 task(s) in the list.
+    Got it. I've added this task:
+    		[D] [✗] essay (by: noon)
+    Now you have 14 task(s) in the list.
+    Here are the tasks in your list:
+         	1. [T] [✓] wake up
+         	2. [D] [✓] fundraiser for school (by: February 14, 2002 12:00PM)
+         	3. [D] [✓] Feed Dogs (by: 7am)
+         	4. [E] [✗] Eat breakfast with family (at: this morning)
+         	5. [E] [✗] nap (at: 5pm)
+         	6. [E] [✓] Go for a run (at: September 20, 2008 1:30AM)
+         	7. [D] [✗] meet friend for coffee (by: August 29, 2019 9:15AM)
+         	8. [E] [✓] Mystery event! (at: November 28, 0002 2:34AM)
+         	9. [E] [✓] birthday get-together at sister's (at: August 20, 2019 7:00PM)
+         	10. [T] [✗] More Homework
+         	11. [E] [✓] movie marathon (at: September 30, 1998 1:25AM)
+         	12. [T] [✗] wash car
+         	13. [E] [✗] coffee outing (at: October 10, 2010 10:10AM)
+         	14. [D] [✗] essay (by: noon)
+
+    Noted. I've removed this task:
+    		12. [T] [✗] wash car
+    Now you have 13 task(s) in the list.
+    Nice! I've marked this task as done:
+    		[E] [✓] coffee outing (at: October 10, 2010 10:10AM)
+    Here are the tasks in your list:
+     		1. [T] [✓] wake up
+     		2. [D] [✓] fundraiser for school (by: February 14, 2002 12:00PM)
+     		3. [D] [✓] Feed Dogs (by: 7am)
+     		4. [E] [✗] Eat breakfast with family (at: this morning)
+     		5. [E] [✗] nap (at: 5pm)
+     		6. [E] [✓] Go for a run (at: September 20, 2008 1:30AM)
+     		7. [D] [✗] meet friend for coffee (by: August 29, 2019 9:15AM)
+     		8. [E] [✓] Mystery event! (at: November 28, 0002 2:34AM)
+     		9. [E] [✓] birthday get-together at sister's (at: August 20, 2019 7:00PM)
+     		10. [T] [✓] More Homework
+     		11. [E] [✓] movie marathon (at: September 30, 1998 1:25AM)
+     		12. [E] [✓] coffee outing (at: October 10, 2010 10:10AM)
+     		13. [D] [✗] essay (by: noon)
+
+    Noted. I've removed this task:
+    		12. [E] [✓] coffee outing (at: October 10, 2010 10:10AM)
+    Now you have 12 task(s) in the list.
+    Noted. I've removed this task:
+    		12. [D] [✗] essay (by: noon)
+    Now you have 11 task(s) in the list.
+    Bye. Hope to see you again soon!

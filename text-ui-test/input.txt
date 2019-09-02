@@ -1,0 +1,21 @@
+list
+
+todo wash car
+
+event coffee outing /at 10/10/2010 1010
+
+deadline essay /by noon
+
+list
+
+delete 12
+
+done 12
+
+list
+
+delete 12
+
+delete 13
+
+bye

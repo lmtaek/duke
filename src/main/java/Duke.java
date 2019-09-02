@@ -4,6 +4,7 @@ import java.io.FileWriter;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Scanner;
+//NEED TO IMPORT TASK PACKAGE
 
 public class Duke {
 
@@ -164,7 +165,7 @@ public class Duke {
             return parseProblem;
         }
 
-        if (index <= 0) {
+        if ((index <= 0) || index > numberOfTasks) {
             return indexNotFound;
         } else {
             index--;
@@ -314,7 +315,7 @@ public class Duke {
                     + taskCompletionStatus(task.isTaskDone())
                     + task.getTaskName()
                     + getTimeOrDate(task)
-                    + "\n\t Now you have " + numberOfTasks + " task(s) in the list.";
+                    + "\n\tNow you have " + numberOfTasks + " task(s) in the list.";
             return output;
         }
     }
