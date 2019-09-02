@@ -21,7 +21,7 @@ public class Duke {
         try {
             readFile();
         } catch (IOException e) {
-            e.printStackTrace();
+            System.out.println("I was unable to read the saved data file.");
         }
 
         String logo = " ____        _        \n"
@@ -148,21 +148,20 @@ public class Duke {
         String response = "\tNoted. I've removed this task:\n";
         int index = -1;
         String parseProblem = "\tI didn't catch that. Can you reformat your command?";
-        String needMoreDetails = "\tPlease provide more details for your event.";
         String indexNotFound = "\tI couldn't find your task.";
 
-        userInput.trim();
+        userInput = userInput.trim();
         if (!userInput.contains("delete ")) {
             return parseProblem;
         }
         String task = userInput.replaceFirst("delete ", "");
         if (task.isBlank() || task.isEmpty()) {
-            return needMoreDetails;
+            return parseProblem;
         }
         try {
             index = Integer.parseInt(task);
         } catch (NumberFormatException e) {
-            return needMoreDetails;
+            return parseProblem;
         }
 
         if (index <= 0) {
@@ -179,7 +178,7 @@ public class Duke {
                     + taskArrayList.get(index).getTaskName()
                     + getTimeOrDate(taskArrayList.get(index))
                     + "\n"
-                    + "\tNow you have " + numberOfTasks + " tasks in the list.";
+                    + "\tNow you have " + numberOfTasks + " task(s) in the list.";
         }
         taskArrayList.remove(index);
         try {
@@ -234,11 +233,11 @@ public class Duke {
     static String addTodo(String userInput) {
         String specifyTask = "\tYou need to specify what the task is!";
         String parseProblem = "\tCan you reformat your command?";
-        userInput.trim();
+        userInput = userInput.trim();
         if (!userInput.contains("todo ")) {
             return parseProblem;
         }
-        String taskName = userInput.replace("todo ", "");
+        String taskName = userInput.replace("todo ", "").trim();
         if (taskName.equals("") || taskName.isBlank()) {
             return specifyTask;
         }
@@ -249,7 +248,7 @@ public class Duke {
     static String addDeadline(String userInput) {
         String parseProblem = "\tI didn't catch that. Can you reformat your command?";
         String needMoreDetails = "\tPlease provide more details for your deadline.";
-        userInput.trim();
+        userInput = userInput.trim();
         if (!userInput.contains("deadline ")) {
             return parseProblem;
         }
@@ -260,8 +259,8 @@ public class Duke {
             return parseProblem;
         }
 
-        String taskName = taskComponents[0];
-        String taskDeadline = taskComponents[1];
+        String taskName = taskComponents[0].trim();
+        String taskDeadline = taskComponents[1].trim();
         if ((taskName.isEmpty() || taskName.isBlank())
         || (taskDeadline.isEmpty() || taskDeadline.isBlank())) {
             return needMoreDetails;
@@ -274,7 +273,7 @@ public class Duke {
     static String addEvent(String userInput) {
         String parseProblem = "\tI didn't catch that. Can you reformat your command?";
         String needMoreDetails = "\tPlease provide more details for your event.";
-        userInput.trim();
+        userInput = userInput.trim();
         if (!userInput.contains("event ")) {
             return parseProblem;
         }
@@ -285,8 +284,8 @@ public class Duke {
             return parseProblem;
         }
 
-        String taskName = taskComponents[0];
-        String taskTime = taskComponents[1];
+        String taskName = taskComponents[0].trim();
+        String taskTime = taskComponents[1].trim();
         if ((taskName.isEmpty() || taskName.isBlank())
                 || (taskTime.isEmpty() || taskTime.isBlank())) {
             return needMoreDetails;
@@ -333,6 +332,7 @@ public class Duke {
     static String markCompletedRequest(String input) {
         String couldNotFindTask = "\tI couldn't find the task.";
         String parseProblem = "\tCan you put a space in your command?";
+        input = input.trim();
         String parsedInput[] = input.split(" ");
         if ((parsedInput.length <= 1)) {
             return parseProblem;
