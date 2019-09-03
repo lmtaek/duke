@@ -1,4 +1,3 @@
-import Exceptions.DukeException;
 import TaskPackage.*;
 
 import java.io.BufferedReader;
@@ -13,7 +12,7 @@ public class Duke {
     private static String dukeGreeting = "Hello, I'm Duke.\nWhat can I do to help you?";
     private static String dukeNeedsValidInput = "\tI'm not sure that I understand. Sorry.";
     private static Task[] taskList = new Task[100];
-    //private HashMap<Integer, Task> taskMap = new HashMap<Integer, Task>(); //need inverse Map <Task, Index> for fast 'search'
+    //private HashMap<Integer, TaskPackage.Task> taskMap = new HashMap<Integer, TaskPackage.Task>(); //need inverse Map <TaskPackage.Task, Index> for fast 'search'
     private static ArrayList<Task> taskArrayList = new ArrayList<Task>();
     private static int numberOfTasks = 0;
 

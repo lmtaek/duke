@@ -12,10 +12,10 @@ then
     rm ACTUAL.TXT
 fi
 
-javac ../src/main/java/TaskPackage #need to figure this out
+javac classpath ../src/main/java/data/data.txt
 
 # compile the code into the bin folder, terminates if error occurred
-if ! javac -cp ../src -Xlint:none -d ../bin ../src/main/java/Duke.java
+if ! javac -cp ../src/main/java -Xlint:none -d ../bin ../src/main/java/Duke.java
 then
     echo "********** BUILD FAILURE **********"
     exit 1
