@@ -40,6 +40,8 @@ public class Duke {
                 closeApplication();
             } else if (userInput.toLowerCase().equals("list")) {
                 System.out.println(readTaskList());
+            } else if (userInput.toLowerCase().contains("find")) {
+                System.out.println(findTask(userInput));
             } else if (userInput.toLowerCase().contains("done")){
                 System.out.println(markCompletedRequest(userInput));
             } else if (userInput.toLowerCase().contains("todo")) {
@@ -152,6 +154,39 @@ public class Duke {
                     + taskList[i].getTaskName()
                     + getTimeOrDate(taskList[i])
                     + "\n";
+        }
+        return response;
+    }
+
+    static String findTask(String userInput) {
+        String response = "\n\t Here are the matching tasks in your list:\n";
+        String badFormat = "\n\t I don't understand. Can you reformat your request?";
+        userInput = userInput.trim();
+
+        if (!userInput.contains("find ")) {
+            return badFormat;
+        } else {
+            userInput = userInput.replaceFirst("find ", "");
+        }
+        if (userInput.isEmpty() || userInput.isBlank()) {
+            return badFormat;
+        }
+
+        for (int i = 0; i < listLength; i++) {
+            if (taskList[i].getTaskName().contains(userInput)) {
+                response = response
+                        +"\t"
+                        + (i+1)
+                        + ". "
+                        + taskTypeLabel(taskList[i])
+                        + taskCompletionStatus(taskList[i].isTaskDone())
+                        + taskList[i].getTaskName()
+                        + getTimeOrDate(taskList[i])
+                        + "\n";
+            }
+            else {
+                continue;
+            }
         }
         return response;
     }
