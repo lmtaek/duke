@@ -1,7 +1,6 @@
 public class Parser implements ParseActionsInterface {
 
     private String input;
-    private String invalidInput = "I didn't catch that. Can you reformat your command?";
     private static String badFormat = "badFormat";
 
     public Parser(String input) {

@@ -9,11 +9,8 @@ public class Duke {
     private TaskList tasks;
     private Storage storage;
 
-    private static ArrayList<Task> taskArrayList = new ArrayList<Task>();
-    private static int numberOfTasks = 0;
-
-    public Duke() throws IOException {
-        this.storage = new Storage(); //At the moment, the data file is hardcoded.
+    public Duke(String filePath) throws IOException {
+        this.storage = new Storage(filePath);
         try {
             this.tasks = new TaskList(storage.loadFile());
         } catch (IOException e) {
@@ -25,12 +22,11 @@ public class Duke {
 
     }
 
-
     public static void main(String[] args) throws IOException {
-        new Duke().run();
+        new Duke("../data/duke.txt").run();
     }
 
-    public void run() {
+    private void run() {
         ui.handleInput();
         System.exit(0);
     }

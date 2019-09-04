@@ -6,14 +6,16 @@ import java.util.ArrayList;
 public class Storage {
 
     private static TaskList tasks;
+    private String filePath;
 
-    public Storage() {
+    public Storage(String filePath) {
+        this.filePath = filePath;
     }
 
     public ArrayList<Task> loadFile() throws IOException {
         ArrayList<Task> tasks = new ArrayList<Task>();
         try {
-            BufferedReader taskFile = new BufferedReader(new FileReader("./data/duke.txt"));
+            BufferedReader taskFile = new BufferedReader(new FileReader(filePath));
             String currentLine = taskFile.readLine();
 
             if (currentLine != null) {
@@ -58,9 +60,9 @@ public class Storage {
         writeInFile(formatFileText());
     }
 
-    static Boolean writeInFile(String savedText) throws IOException {
+    private Boolean writeInFile(String savedText) throws IOException {
         try {
-            File file = new File("./data/duke.txt");
+            File file = new File(filePath);
             FileWriter taskFile = new FileWriter(file);
             taskFile.write(savedText);
             taskFile.close();
@@ -71,8 +73,7 @@ public class Storage {
         return true;
     }
 
-
-    static String formatFileText() {
+    private String formatFileText() {
         String textToWrite = "";
         for (int i = 0; i < tasks.getNumberOfTasks(); i++) {
             textToWrite = textToWrite

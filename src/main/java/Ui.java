@@ -10,8 +10,8 @@ public class Ui implements ParseActionsInterface {
     private static Storage storage;
 
     private String dukeGreeting = "Hello, I'm Duke.\nWhat can I do to help you?";
-    private String logo = " ____        _        \n"
-            + "|  _ \\ _   _| | _____ \n"
+    private String logo = " ____        _\n"
+            + "|  _ \\ _   _| | _____\n"
             + "| | | | | | | |/ / _ \\\n"
             + "| |_| | |_| |   <  __/\n"
             + "|____/ \\__,_|_|\\_\\___|\n";
@@ -28,7 +28,7 @@ public class Ui implements ParseActionsInterface {
 
     public void handleInput() {
         System.out.println("Hello from\n" + logo);
-        System.out.println(dukeGreeting + "\r\n");
+        System.out.println(dukeGreeting + "\n");
 
         // The user will enter commands from this point onwards.
         Scanner input = new Scanner(System.in);
@@ -74,6 +74,8 @@ public class Ui implements ParseActionsInterface {
             }
         }
     }
+
+    /* ACTIONS */
 
     private String readTaskList() {
         String response = "\tHere are the tasks in your list:\n";
@@ -208,7 +210,7 @@ public class Ui implements ParseActionsInterface {
             tasks.addTask(task);
             updateFile();
 
-            String output = "\tGot it. I've added this task: "
+            String output = "\tGot it. I've added this task:"
                     + "\n\t\t"
                     + taskTypeLabel(task)
                     + taskCompletionStatus(task.isTaskDone())
@@ -218,7 +220,6 @@ public class Ui implements ParseActionsInterface {
             return output;
         }
     }
-
 
     /* FOR FORMATTING */
 
