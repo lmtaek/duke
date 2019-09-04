@@ -156,7 +156,7 @@ public class Duke {
         if (!userInput.contains("delete ")) {
             return parseProblem;
         }
-        String task = userInput.replaceFirst("delete ", "");
+        String task = userInput.replaceFirst("delete ", "").trim();
         if (task.isBlank() || task.isEmpty()) {
             return parseProblem;
         }
@@ -217,7 +217,7 @@ public class Duke {
         if (!userInput.contains("find ")) {
             return badFormat;
         } else {
-            userInput = userInput.replaceFirst("find ", "").toLowerCase();
+            userInput = userInput.replaceFirst("find ", "").toLowerCase().trim();
         }
         if (userInput.isEmpty() || userInput.isBlank()) {
             return badFormat;
@@ -287,7 +287,7 @@ public class Duke {
         if (!userInput.contains("deadline ")) {
             return parseProblem;
         }
-        String task = userInput.replaceFirst("deadline ", "");
+        String task = userInput.replaceFirst("deadline ", "").trim();
         String[] taskComponents = task.split(" /by ");
 
         if (taskComponents.length <= 1) {
@@ -312,7 +312,7 @@ public class Duke {
         if (!userInput.contains("event ")) {
             return parseProblem;
         }
-        String task = userInput.replaceFirst("event ", "");
+        String task = userInput.replaceFirst("event ", "").trim();
         String[] taskComponents = task.split(" /at ");
 
         if (taskComponents.length <= 1) {
