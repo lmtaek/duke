@@ -11,8 +11,6 @@ public class Duke {
 
     private static String dukeGreeting = "Hello, I'm Duke.\nWhat can I do to help you?";
     private static String dukeNeedsValidInput = "\tI'm not sure that I understand. Sorry.";
-    private static Task[] taskList = new Task[100];
-    //private HashMap<Integer, TaskPackage.Task> taskMap = new HashMap<Integer, TaskPackage.Task>(); //need inverse Map <TaskPackage.Task, Index> for fast 'search'
     private static ArrayList<Task> taskArrayList = new ArrayList<Task>();
     private static int numberOfTasks = 0;
 
@@ -219,22 +217,22 @@ public class Duke {
         if (!userInput.contains("find ")) {
             return badFormat;
         } else {
-            userInput = userInput.replaceFirst("find ", "");
+            userInput = userInput.replaceFirst("find ", "").toLowerCase();
         }
         if (userInput.isEmpty() || userInput.isBlank()) {
             return badFormat;
         }
 
-        for (int i = 0; i < listLength; i++) {
-            if (taskList[i].getTaskName().contains(userInput)) {
+        for (int i = 0; i < numberOfTasks; i++) {
+            if (taskArrayList.get(i).getTaskName().toLowerCase().contains(userInput)) {
                 response = response
                         +"\t"
                         + (i+1)
                         + ". "
-                        + taskTypeLabel(taskList[i])
-                        + taskCompletionStatus(taskList[i].isTaskDone())
-                        + taskList[i].getTaskName()
-                        + getTimeOrDate(taskList[i])
+                        + taskTypeLabel(taskArrayList.get(i))
+                        + taskCompletionStatus(taskArrayList.get(i).isTaskDone())
+                        + taskArrayList.get(i).getTaskName()
+                        + getTimeOrDate(taskArrayList.get(i))
                         + "\n";
             }
             else {
