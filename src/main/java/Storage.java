@@ -1,12 +1,6 @@
-import TaskPackage.Deadline;
-import TaskPackage.Event;
-import TaskPackage.Task;
-import TaskPackage.ToDo;
+import TaskPackage.*;
 
-import java.io.BufferedReader;
-import java.io.FileReader;
-import java.io.FileWriter;
-import java.io.IOException;
+import java.io.*;
 import java.util.ArrayList;
 
 public class Storage {
@@ -66,7 +60,8 @@ public class Storage {
 
     static Boolean writeInFile(String savedText) throws IOException {
         try {
-            FileWriter taskFile = new FileWriter("./data/duke.txt");
+            File file = new File("./data/duke.txt");
+            FileWriter taskFile = new FileWriter(file);
             taskFile.write(savedText);
             taskFile.close();
         } catch (Exception e) {

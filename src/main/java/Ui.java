@@ -35,9 +35,6 @@ public class Ui implements ParseActionsInterface {
 
         while (input.hasNextLine()) {
 
-            if (isUserFinished) {
-                break;
-            }
             String userInput = input.nextLine();
             this.parser = new Parser(userInput);
             ActionType action = parser.determineAction();
@@ -71,6 +68,9 @@ public class Ui implements ParseActionsInterface {
                 default:
                     System.out.println(dukeNeedsValidInput);
                     break;
+            }
+            if (isUserFinished) {
+                break;
             }
         }
     }
