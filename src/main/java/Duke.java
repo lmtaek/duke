@@ -15,7 +15,7 @@ public class Duke {
     private static int numberOfTasks = 0;
 
 
-    public static void main(String[] args) throws DukeException {
+    public static void main(String[] args) {
 
         //When Duke starts up, it will check to see if a list has already been made.
         try {
