@@ -6,14 +6,14 @@ import java.time.format.DateTimeParseException;
 
 public abstract class Task {
 
-    public enum TaskType {
-        TODO, DEADLINE, EVENT;
-    }
+    public enum TaskType { TODO, DEADLINE, EVENT;}
 
     private String taskName;
     private Boolean isDone = false;
     private String time;
+
     private String dateInputPattern = "d/M/yyyy HHmm";
+    private String dateInputPattern2 = "d/M/yyyy h:mma";
     private String dateOutputPattern = "MMMM d, yyyy h:mma";
     private LocalDateTime date;
     private Boolean hasDate = false;
@@ -23,9 +23,7 @@ public abstract class Task {
     public Task(String taskName, String taskTime) {
         this.taskName = taskName;
         this.time = taskTime;
-        if (taskTime.matches("datePattern")) {
-            convertTimeToDate();
-        }
+        convertTimeToDate();
     }
 
     public String getTaskName() {
@@ -51,7 +49,14 @@ public abstract class Task {
             this.date = reformattedDate;
             this.hasDate = true;
         } catch (DateTimeParseException e) {
-            //System.out.println("Time formatting does not align with Date formatting.");
+            try {
+                DateTimeFormatter formatter = DateTimeFormatter.ofPattern(dateInputPattern2);
+                LocalDateTime reformattedDate2 = LocalDateTime.parse(this.time, formatter);
+                this.date = reformattedDate2;
+                this.hasDate = true;
+            } catch (DateTimeParseException e2) {
+                //No date matched, thus we will not give the field a value.
+            }
         }
 
     }

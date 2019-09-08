@@ -5,7 +5,7 @@ import java.util.ArrayList;
 
 /**
  * Class containing the main method. Establishes current session's Ui, TaskList, and Storage,
- * and cues Ui to begin taking in input from the user.
+ * and cues Ui to begin taking input from the user.
  */
 public class Duke {
 
@@ -18,7 +18,6 @@ public class Duke {
         try {
             this.tasks = new TaskList(storage.loadFile());
         } catch (IOException e) {
-            //Could be redundant. Error handled in Storage class as well, but keeping for extra security.
             System.out.println("File could not be loaded. Starting a new save file and list...");
             this.tasks = new TaskList(new ArrayList<Task>());
         }
