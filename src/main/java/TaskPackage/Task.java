@@ -4,6 +4,11 @@ import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.time.format.DateTimeParseException;
 
+/**
+ * An abstract class--parent to ToDo, Deadline, and Event classes. Users can create
+ * a Task to add to their session's TaskList. The constructor takes a taskName at minimum, though
+ * certain subclasses require a designated time as well.
+ */
 public abstract class Task {
 
     public enum TaskType { TODO, DEADLINE, EVENT;}
@@ -34,6 +39,12 @@ public abstract class Task {
         return time;
     }
 
+    /**
+     * Method with the same functionality as getTime, though it has not been overridden by subclasses.
+     * Used mainly when saving a Task's time to a file.
+     * @return Returns the time without additional strings added in the overridden getTime()
+     * methods of subclasses.
+     */
     public String getBasicTime() { //Needed a function that wasn't overridden by subclasses.
         return time;
     }

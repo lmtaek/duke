@@ -3,6 +3,12 @@ import TaskPackage.*;
 import java.io.*;
 import java.util.ArrayList;
 
+/**
+ * A class meant to save the user's ongoing list by writing the data onto a file. When a new session begins,
+ * the Storage class will attempt to read the referenced file to re-create the list from prior sessions. If it
+ * cannot read the file, it will write a new file. As the user adds/deletes/completes tasks, the Storage class
+ * will update its file.
+ */
 public class Storage {
 
     private static TaskList tasks;
@@ -12,6 +18,14 @@ public class Storage {
         this.filePath = filePath;
     }
 
+    /**
+     * A method used when a new Duke session begins. The Storage class will try to read the referenced
+     * file to recreate the list from the earlier session, or it will create a new file to record the
+     * new data.
+     * @return It returns an ArrayList with all the tasks from prior sessions' task lists, or an empty
+     * ArrayList if no earlier data is found.
+     * @throws IOException When Storage is unable to locate/read the file.
+     */
     public ArrayList<Task> loadFile() throws IOException {
         ArrayList<Task> tasks = new ArrayList<Task>();
         try {
@@ -75,6 +89,10 @@ public class Storage {
         return true;
     }
 
+    /**
+     * Standardizes the Task List and makes it more easily parsed when the file is being referenced in the future.
+     * @return The returned String is printed into the save file.
+     */
     private String formatFileText() {
         String textToWrite = "";
         for (int i = 0; i < tasks.getNumberOfTasks(); i++) {

@@ -4,7 +4,7 @@ import java.io.IOException;
 import java.util.Scanner;
 
 /**
- * The class meant to react to the Duke user's input. It receives commands, sends them to the Parser class
+ * A class meant to react to the Duke user's input. It receives commands, sends them to the Parser class
  * to make the input more usable, then uses the returned input in order to respond in a specific manner to
  * the given command.
  */
