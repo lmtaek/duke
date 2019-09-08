@@ -22,7 +22,6 @@ public class ToDoTest {
     public void testIsDone() {
         ToDo testToDo = new ToDo(taskName);
         assertEquals(false, testToDo.isTaskDone());
-
         testToDo.markAsDone();
         assertEquals(true, testToDo.isTaskDone());
     }

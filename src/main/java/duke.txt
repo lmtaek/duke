@@ -1,0 +1,3 @@
+EVENT//false//coffee outing//4/04/2004 4:40PM
+TODO//false//make breakfast
+DEADLINE//true//Finish essay//3pm

@@ -12,10 +12,9 @@ public class DukeTest {
     public void testNewDuke() throws IOException {
         try {
             Duke duke = new Duke(validFilePath);
-        } catch (IOException e) {
-            fail();
-        }
+        } catch (IOException e) { fail(); }
     }
+
     /**
      * ToDo: test Duke without access to valid filePath. Verify new file is made at ./duke.txt.
      */
