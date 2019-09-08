@@ -49,7 +49,9 @@ public class Storage {
             }
             taskFile.close();
         } catch (Exception e) {
-            System.out.println(e);
+            //System.out.println(e);
+            System.out.println("File could not be found. Starting a new file and list...");
+            File newFile = new File(filePath);
             return tasks;
         }
         return tasks;
@@ -67,7 +69,7 @@ public class Storage {
             taskFile.write(savedText);
             taskFile.close();
         } catch (Exception e) {
-            System.out.println(e);
+            System.out.println("I couldn't save your information to the file.");
             return false;
         }
         return true;

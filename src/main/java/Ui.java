@@ -6,8 +6,8 @@ import java.util.Scanner;
 public class Ui implements ParseActionsInterface {
 
     private Parser parser;
-    private static TaskList tasks;
-    private static Storage storage;
+    private TaskList tasks;
+    private Storage storage;
 
     private String dukeGreeting = "Hello, I'm Duke.\nWhat can I do to help you?";
     private String logo = " ____        _\n"
