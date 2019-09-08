@@ -1,3 +1,8 @@
+/**
+ * Class designated to take user input, and parse it into a format that can be used by the Ui.
+ * This returned output is typically in the form of a String or integer, otherwise the class
+ * will return an invalid output that is handled by the Ui accordingly.
+ */
 public class Parser implements ParseActionsInterface {
 
     private String input;
@@ -7,6 +12,11 @@ public class Parser implements ParseActionsInterface {
         this.input = input;
     }
 
+    /**
+     * This method detects keywords within the user's input, matches them to an enumerated action,
+     * and returns the enumeration which tells the Ui class how to behave.
+     * @return ActionType enumeration--one of nine instructions for the Ui.
+     */
     public ParseActionsInterface.ActionType determineAction() {
 
         if (input.toLowerCase().equals("bye")) {

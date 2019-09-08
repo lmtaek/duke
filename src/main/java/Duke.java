@@ -1,5 +1,4 @@
 import TaskPackage.Task;
-
 import java.io.IOException;
 import java.util.ArrayList;
 
@@ -12,6 +11,7 @@ public class Duke {
     private Ui ui;
     private TaskList tasks;
     private Storage storage;
+
 
     public Duke(String filePath) throws IOException {
         this.storage = new Storage(filePath);
