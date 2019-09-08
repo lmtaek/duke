@@ -2,10 +2,21 @@ import TaskPackage.Task;
 
 import java.util.ArrayList;
 
+/**
+ * A class for the storage of the user's current list of tasks. As the user puts in more
+ * commands, the TaskList designated to the session will update.
+ */
 public class TaskList {
 
     private ArrayList<Task> taskList;
 
+    /**
+     * The constructor method for the TaskList class. Upon being created, the TaskList will attempt
+     * to use the saved data from Storage, though if it cannot find a prior list, it will
+     * use a new, empty ArrayList.
+     * @param savedList The ArrayList used to organize tasks in TaskList. It may contain prior tasks from
+     *                  earlier sessions.
+     */
     public TaskList(ArrayList<Task> savedList) {
         this.taskList = savedList;
     }

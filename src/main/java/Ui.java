@@ -3,6 +3,11 @@ import TaskPackage.*;
 import java.io.IOException;
 import java.util.Scanner;
 
+/**
+ * The class meant to react to the Duke user's input. It receives commands, sends them to the Parser class
+ * to make the input more usable, then uses the returned input in order to respond in a specific manner to
+ * the given command.
+ */
 public class Ui implements ParseActionsInterface {
 
     private Parser parser;
@@ -26,6 +31,10 @@ public class Ui implements ParseActionsInterface {
 
     }
 
+    /**
+     * A looping method that will continue taking input until the user types "bye". Each line of
+     * input is sent to be parsed. Once it is returned, Ui determines what to do, and how to respond.
+     */
     public void handleInput() {
         System.out.println("Hello from\n" + logo);
         System.out.println(dukeGreeting + "\n");
