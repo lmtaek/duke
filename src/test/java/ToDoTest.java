@@ -9,21 +9,21 @@ public class ToDoTest {
     @Test
     public void testGetTaskName() {
         ToDo testToDo = new ToDo(taskName);
-        assertEquals(testToDo.getTaskName(), taskName);
+        assertEquals(taskName, testToDo.getTaskName());
     }
 
     @Test
     public void testGetTime() {
         ToDo testToDo = new ToDo(taskName);
-        assertEquals(testToDo.getTime(), "");
+        assertEquals("", testToDo.getTime());
     }
 
     @Test
     public void testIsDone() {
         ToDo testToDo = new ToDo(taskName);
-        assertEquals(testToDo.isTaskDone(), false);
+        assertEquals(false, testToDo.isTaskDone());
 
         testToDo.markAsDone();
-        assertEquals(testToDo.isTaskDone(), true);
+        assertEquals(true, testToDo.isTaskDone());
     }
 }

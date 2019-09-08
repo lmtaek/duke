@@ -70,10 +70,6 @@ public abstract class Task {
         return fullDate;
     }
 
-    public LocalDateTime getDate() {
-        return this.date;
-    }
-
     public Boolean isTaskDone() {
         return isDone;
     }
