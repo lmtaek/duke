@@ -113,7 +113,7 @@ public class Ui implements ParseActionsInterface {
         for (int i = 0; i < tasks.getNumberOfTasks(); i++) {
             if (tasks.getTaskAt(i).getTaskName().toLowerCase().contains(userInput)) {
                 response = response
-                        +"\t"
+                        + "\t"
                         + (i+1)
                         + ". "
                         + taskTypeLabel(tasks.getTaskAt(i))

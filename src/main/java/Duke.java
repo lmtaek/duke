@@ -1,4 +1,4 @@
-import TaskPackage.Task;
+import TaskPackage.*;
 import java.io.IOException;
 import java.util.ArrayList;
 
