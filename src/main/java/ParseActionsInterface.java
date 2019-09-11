@@ -1,3 +1,7 @@
+/**
+ * An interface used to designate actions for the Ui. The parser determines an action and passes one of the
+ * provided enumerations in order to prompt the Ui to act.
+ */
 public interface ParseActionsInterface {
 
     /**

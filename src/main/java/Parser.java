@@ -8,6 +8,11 @@ public class Parser implements ParseActionsInterface {
     private String input;
     private static String badFormat = "badFormat";
 
+    /**
+     * The constructor for the Parser class. It receives a specific user command and saves it to its input field
+     * for future reference.
+     * @param input
+     */
     public Parser(String input) {
         this.input = input;
     }
@@ -39,6 +44,10 @@ public class Parser implements ParseActionsInterface {
         return ActionType.INVALID;
     }
 
+    /**
+     * A method to parse the user input when the command is specifically meant for finding a task.
+     * @return the usable String to the Ui.
+     */
     public String parseFind() {
         String userInput = input.trim();
 
@@ -53,6 +62,10 @@ public class Parser implements ParseActionsInterface {
         return userInput;
     }
 
+    /**
+     * A method to parse the user input when the command is specifically meant for deleting a task.
+     * @return the usable integer as an index for the Ui.
+     */
     public int parseDelete() {
         String userInput = input.trim();
         int index = -1;
@@ -72,6 +85,10 @@ public class Parser implements ParseActionsInterface {
         return index;
     }
 
+    /**
+     * A method to parse the user input when the command is specifically meant for marking a task as done.
+     * @return the usable integer as an index for the Ui.
+     */
     public int parseDone() {
         int badIndex = -1;
         String userInput = input.trim();
@@ -97,6 +114,10 @@ public class Parser implements ParseActionsInterface {
         }
     }
 
+    /**
+     * A method to parse the user input when the command is specifically meant for creating a ToDo task.
+     * @return the usable String for the Ui.
+     */
     public String parseToDo() {
         String userInput = input.trim();
         if (!userInput.contains("todo ")) {
@@ -109,6 +130,10 @@ public class Parser implements ParseActionsInterface {
         return taskName;
     }
 
+    /**
+     * A method to parse the user input when the command is specifically meant for creating a Deadline task.
+     * @return the usable String array for the Ui. The first element is the task name. The second is its time.
+     */
     public String[] parseDeadline() {
         String[] badOutput = new String[0];
         String userInput = input.trim();
@@ -134,6 +159,10 @@ public class Parser implements ParseActionsInterface {
         return taskComponents;
     }
 
+    /**
+     * A method to parse the user input when the command is specifically meant for creating an Event task.
+     * @return the usable String array for the Ui. The first element is the task name. The second is its time.
+     */
     public String[] parseEvent() {
         String[] badOutput = new String[0];
         String userInput = input.trim();

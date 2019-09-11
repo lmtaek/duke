@@ -12,7 +12,13 @@ public class Duke {
     private TaskList tasks;
     private Storage storage;
 
-
+    /**
+     * This method prepares the user's new session with Duke. It creates a Storage, TaskList, and Ui class to use during the session.
+     * If the filePath referenced when making the new Storage has been used previously and a file with data is present,
+     * the data will be read and the list from the previous session is used.
+     * @param filePath The relative path of the saved data file from a previous session.
+     * @throws IOException If the Storage class cannot successfully load the data file, this exception is thrown.
+     */
     public Duke(String filePath) throws IOException {
         this.storage = new Storage(filePath);
         try {
@@ -26,6 +32,11 @@ public class Duke {
 
     }
 
+    /**
+     * This method prompts the Duke to begin receiving input, and recording input to the file in the referenced filePath.
+     * @param args
+     * @throws IOException
+     */
     public static void main(String[] args) throws IOException {
         new Duke("./duke.txt").run();
     }

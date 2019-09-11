@@ -14,6 +14,11 @@ public class Storage {
     private static TaskList tasks;
     private String filePath;
 
+    /**
+     * The constructor for the Storage class. It takes in the relative path of a file to load/save data onto during
+     * the user's session.
+     * @param filePath The relative path of the load/save file.
+     */
     public Storage(String filePath) {
         this.filePath = filePath;
     }
@@ -71,6 +76,12 @@ public class Storage {
         return tasks;
     }
 
+    /**
+     * Used to update the load/save file whenever the user submits a command that alters the TaskList.
+     * @param tasks This method takes in the updated TaskList, and modifies the information so it can be recorded
+     *              in the load/save file properly.
+     * @throws IOException This exception is thrown whenever the information fails to be written into the file.
+     */
     public void updateTasks(TaskList tasks) throws IOException {
         this.tasks = tasks;
         writeInFile(formatFileText());

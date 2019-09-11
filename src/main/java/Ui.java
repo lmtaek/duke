@@ -25,6 +25,12 @@ public class Ui implements ParseActionsInterface {
     private static String badFormat = "badFormat";
     private Boolean isUserFinished = false;
 
+    /**
+     * The constructor method for the Ui class. Will take in a TaskList and Storage in order to
+     * manipulate a session's TaskList and Storage according to the user's requests.
+     * @param tasks the TaskList used during the session.
+     * @param storage the Storage used during the session.
+     */
     public Ui(TaskList tasks, Storage storage) {
         this.tasks = tasks;
         this.storage = storage;
